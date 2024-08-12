@@ -11,6 +11,7 @@ import io.cucumber.java.en.When;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import resources.APIResources;
 import resources.TestDataBuild;
 import resources.Utils;
 
@@ -18,17 +19,22 @@ public class stepDefination extends Utils {
 	RequestSpecification req;
 	Response response;
 	TestDataBuild data = new TestDataBuild();
-	
+
 	@Given("Add Place Payload with {string} {string} {string}")
 	public void add_place_payload_with(String name, String language, String address) throws IOException {
-	    // Write code here that turns the phrase above into concrete actions
-		req = given().spec(requestSpecification()).body(data.addPlacePayload(name, language, address));
+		req = given().spec(requestSpecification())
+				.body(data.addPlacePayload(name, language, address));
 	}
 
-	@When("user calls {string} with post http request")
-	public void user_calls_with_post_http_request(String string) {
-		response = req.when().post("maps/api/place/add/json")
-				.then().spec(responseSpecification()).extract().response();
+	@When("user calls {string} with {string} http request")
+	public void user_calls_with_http_request(String resource, String method) {
+		// constructor will be called with value of resource which you pass
+		APIResources resourceAPI = APIResources.valueOf(resource);
+		
+		if(method.equalsIgnoreCase("POST"))
+			response = req.when().post(resourceAPI.getResource());
+		else if(method.equalsIgnoreCase("GET"))
+			response = req.when().post(resourceAPI.getResource());
 	}
 
 	@Then("the API call is success with status code {int}")
