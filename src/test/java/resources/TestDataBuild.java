@@ -7,12 +7,12 @@ import pojo.AddPlace;
 import pojo.Location;
 
 public class TestDataBuild {
-	public AddPlace addPlacePayload() {
+	public AddPlace addPlacePayload(String name, String language, String address) {
 		AddPlace p = new AddPlace();
 		p.setAccuracy(50);
-		p.setAddress("29, side layout, cohen 09");
-		p.setLanguage("French-IN");
-		p.setName("Tushar Rathore Academy");
+		p.setAddress(address);
+		p.setLanguage(language);
+		p.setName(name);
 		p.setPhone_number("(+91) 983 893 3937");
 		p.setWebsite("http://google.com");
 

@@ -24,13 +24,14 @@ public class Utils {
 	}
 
 	public ResponseSpecification responseSpecification() {
-		return new ResponseSpecBuilder().expectStatusCode(200)
-				.expectContentType(ContentType.JSON).build();
+		return new ResponseSpecBuilder()
+				.expectStatusCode(200).expectContentType(ContentType.JSON).build();
 	}
 
 	public String getGlobalValue(String key) throws IOException {
 		Properties prop = new Properties();
-		FileInputStream fis = new FileInputStream("E:\\Tushar\\API Testing Practise\\TusharLearning\\APIFramework\\src\\test\\java\\resources\\global.properties");
+		FileInputStream fis = new FileInputStream(
+				"E:\\Tushar\\API Testing Practise\\TusharLearning\\APIFramework\\src\\test\\java\\resources\\global.properties");
 		prop.load(fis);
 		return prop.getProperty(key);
 	}
