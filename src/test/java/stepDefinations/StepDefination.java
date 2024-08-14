@@ -12,12 +12,12 @@ import resources.APIResources;
 import resources.TestDataBuild;
 import resources.Utils;
 
-public class stepDefination extends Utils {
+public class StepDefination extends Utils {
 	RequestSpecification req;
 	Response response;
 	TestDataBuild data = new TestDataBuild();
 	static String placeId;
-
+	
 	@Given("Add Place Payload with {string} {string} {string}")
 	public void add_place_payload_with(String name, String language, String address) throws IOException {
 		req = given().spec(requestSpecification())
@@ -34,7 +34,7 @@ public class stepDefination extends Utils {
 		else if (method.equalsIgnoreCase("GET"))
 			response = req.when().get(resourceAPI.getResource());
 	}
-	
+
 	@Then("the API call got success with status code {int}")
 	public void the_api_call_got_success_with_status_code(Integer statusCode) {
 		assertEquals(statusCode.intValue(), response.getStatusCode());
@@ -52,7 +52,7 @@ public class stepDefination extends Utils {
 		user_calls_with_http_request(resource, "Get");
 		assertEquals(expectedName, getJsonPath(response, "name"));
 	}
-	
+
 	@Given("DeletePlace Payload")
 	public void delete_place_payload() throws IOException {
 		req = given().spec(requestSpecification())
